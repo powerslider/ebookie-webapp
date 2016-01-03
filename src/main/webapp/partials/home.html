@@ -1,0 +1,24 @@
+<div class="home-view">
+    <h1>{{message}}</h1>
+    <h1>Hi {{user.firstName}}!</h1>
+
+    <p>You're logged in!!</p>
+    <a href="#/" id="favourites-btn" class="btn btn-info " ng-click="toggleSidePanel()">Favourite Books</a>
+    <div pageslide ps-open="sidePanelOpened" ps-side="right" ps-custom-top="45px">
+        <div class="side-panel-content">
+            <i class="fa fa-times" id="close-button" ng-click="toggleSidePanel()"></i>
+            <h2>Favourite Books</h2>
+        </div>
+    </div>
+
+    <!--<h3>All registered users:</h3>-->
+    <!--<ul>-->
+        <!--<li ng-repeat="user in allUsers">-->
+        <!--{{user.username}} ({{user.firstName}} {{user.lastName}})-->
+        <!-&#45;&#45; <a href="#" ng-click="deleteUser(user.id)">Delete</a>-->
+        <!--</li>-->
+    <!--</ul>-->
+    <!--<p>&nbsp;</p>-->
+
+    <p><a href="#/login" class="btn btn-primary">Logout</a></p>
+</div>

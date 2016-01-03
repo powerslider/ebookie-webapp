@@ -1,0 +1,1 @@
+define([],function(){function b(a,b,c){a.message="My Message Is Super Awesome";a.user=null;a.allUsers=[];a.sidePanelOpened=!1;a.toggleSidePanel=function(){a.sidePanelOpened=!a.sidePanelOpened}}angular.module("bookApp.controllers").controller("HomeController",b);b.$inject=["$scope","$rootScope","UserService"]});

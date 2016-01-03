@@ -1,0 +1,1 @@
+define([],function(){function a(a){a.htmlContent="Table of contents"}angular.module("bookApp.controllers").controller("EditorController",a);a.$inject=["$scope"]});
