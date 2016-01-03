@@ -1,1 +1,0 @@
-define([],function(){function a(b,a,d,e,c){b.register=function(){b.dataLoading=!0;a.Create(b.user).then(function(a){a.success?(c.Success("Registration successful",!0),d.path("/login")):(c.Error(a.message),b.dataLoading=!1)})}}angular.module("bookApp.controllers").controller("RegisterController",a);a.$inject=["$scope, UserService","$location","$rootScope","FlashService"]});
