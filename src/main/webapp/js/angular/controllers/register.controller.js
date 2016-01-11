@@ -5,21 +5,21 @@ define([],
             .module('bookApp.controllers')
             .controller('RegisterController', RegisterController);
 
-        RegisterController.$inject = ['$scope, UserService', '$location', '$rootScope', 'FlashService'];
+        RegisterController.$inject = ['$scope', 'UserService', '$location', '$rootScope', 'FlashService'];
         function RegisterController($scope, UserService, $location, $rootScope, FlashService) {
             $scope.register = register;
 
             function register() {
                 $scope.dataLoading = true;
+                console.log($scope.user);
                 UserService.Create($scope.user)
-                    .then(function (response) {
-                        if (response.success) {
-                            FlashService.Success('Registration successful', true);
-                            $location.path('/login');
-                        } else {
-                            FlashService.Error(response.message);
-                            $scope.dataLoading = false;
-                        }
+                    .success(function (response) {
+                        FlashService.Success(response.data, true);
+                        $location.path('/login');
+                    })
+                    .error(function (response) {
+                        FlashService.Error(response.data);
+                        $scope.dataLoading = false;
                     });
             }
         }

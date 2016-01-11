@@ -88,7 +88,7 @@ public class Ebook {
         this.tableOfContents = tableOfContents;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     public User getAuthor() {
         return author;
@@ -111,7 +111,7 @@ public class Ebook {
         this.chapters.add(newChapter);
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "favouriteEbooks")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "favouriteEbooks")
     public Set<User> getUserLikes() {
         return userLikes;
     }

@@ -59,7 +59,7 @@ public class User {
         this.email = email;
     }
 
-    @Column(name = "password", nullable = false, length = 50)
+    @Column(name = "password", nullable = false, unique = true, length = 50)
     public String getPassword() {
         return password;
     }
@@ -87,7 +87,7 @@ public class User {
         this.lastName = lastName;
     }
 
-    @Column(name = "username", nullable = false, length = 50)
+    @Column(name = "username", nullable = false, unique = true, length = 50)
     public String getUsername() {
         return username;
     }
@@ -96,7 +96,8 @@ public class User {
         this.username = username;
     }
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+//    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "author", cascade = CascadeType.ALL)
     public Set<Ebook> getAuthoredEbooks() {
         return authoredEbooks;
     }
@@ -109,6 +110,7 @@ public class User {
         this.authoredEbooks.add(newBook);
     }
 
+//    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "user_ebook", joinColumns = {
             @JoinColumn(name = "user_id", nullable = false, updatable = false) },

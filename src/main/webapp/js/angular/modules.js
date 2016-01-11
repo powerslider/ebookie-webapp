@@ -5,10 +5,13 @@
 
 define([],
     function() {
+        angular.module('bookApp.services', []);
+
         angular.module('bookApp.controllers', [
             'textAngular',
-            'pageslide-directive'
+            'pageslide-directive',
+            'ngSanitize',
+            'toastr',
+            'bookApp.services'
         ]);
-
-        angular.module('bookApp.services', []);
     });

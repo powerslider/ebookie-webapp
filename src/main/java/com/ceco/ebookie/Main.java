@@ -54,5 +54,27 @@ public class Main {
                 session.save(ebook2);
             }
         }.execute();
+
+//        User user2 = new User();
+//        user2.setFirstName("Muncho");
+//        user2.setLastName("Papuncho");
+//        user2.setUsername("muncho");
+//        user2.setPassword("456");
+//        user2.setEmail("muncho.papuncho@gmail.com");
+//
+//        new Transactional<Void>() {
+//            @Override
+//            protected void doInTransaction(Session session) throws Exception {
+//                session.createSQLQuery(
+//                        "insert into user (first_name, last_name, email, username, password) " +
+//                                "values(:firstName, :lastName, :email, :username, :password)")
+//                        .setString("firstName", user2.getFirstName())
+//                        .setString("lastName", user2.getLastName())
+//                        .setString("email", user2.getEmail())
+//                        .setString("username", user2.getUsername())
+//                        .setString("password", user2.getPassword())
+//                        .executeUpdate();
+//            }
+//        }.execute();
     }
 }

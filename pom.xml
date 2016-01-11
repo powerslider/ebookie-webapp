@@ -16,9 +16,22 @@
         <servlet.version>3.0.20100224</servlet.version>
         <angular.version>1.4.8</angular.version>
         <hibernate.version>4.3.8.Final</hibernate.version>
+        <spring.version>4.2.4.RELEASE</spring.version>
+        <jackson.version>2.5.4</jackson.version>
+        <!--<spring.boot.version>1.3.1.RELEASE</spring.boot.version>-->
     </properties>
 
+    <!--<parent>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-parent</artifactId>-->
+        <!--<version>1.3.1.RELEASE</version>-->
+    <!--</parent>-->
+
     <dependencies>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-web</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -34,11 +47,6 @@
             <artifactId>hibernate-c3p0</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.mchange</groupId>-->
-            <!--<artifactId>c3p0</artifactId>-->
-            <!--<version>0.9.2-pre4</version>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -53,6 +61,56 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>19.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>commons-logging</groupId>-->
+                    <!--<artifactId>commons-logging</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- Jackson JSON Mapper -->
+        <!--<dependency>-->
+            <!--<groupId>org.codehaus.jackson</groupId>-->
+            <!--<artifactId>jackson-mapper-asl</artifactId>-->
+            <!--<version>1.9.13</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-hibernate4</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet.version}</version>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
@@ -152,14 +210,6 @@
 
     <build>
         <finalName>ebookie</finalName>
-
-        <!--<resources>-->
-            <!--<resource>-->
-                <!--<directory>src/main/javascript</directory>-->
-                <!--<filtering>true</filtering>-->
-            <!--</resource>-->
-        <!--</resources>-->
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -184,53 +234,15 @@
             </plugin>
 
             <!--<plugin>-->
-            <!--<groupId>org.apache.maven.plugins</groupId>-->
-            <!--<artifactId>maven-dependency-plugin</artifactId>-->
-            <!--<version>2.10</version>-->
-            <!--<executions>-->
-            <!--<execution>-->
-            <!--<phase>validate</phase>-->
-            <!--<goals>-->
-            <!--<goal>copy</goal>-->
-            <!--</goals>-->
-            <!--<configuration>-->
-            <!--<outputDirectory>${endorsed.dir}</outputDirectory>-->
-            <!--<silent>true</silent>-->
-            <!--<artifactItems>-->
-            <!--<artifactItem>-->
-            <!--<groupId>javax</groupId>-->
-            <!--<artifactId>javaee-endorsed-api</artifactId>-->
-            <!--<version>LATEST</version>-->
-            <!--<type>jar</type>-->
-            <!--</artifactItem>-->
-            <!--</artifactItems>-->
-            <!--</configuration>-->
-            <!--</execution>-->
-            <!--</executions>-->
-            <!--</plugin>-->
-
-            <!--<plugin>-->
-                <!--<groupId>net.alchim31.maven</groupId>-->
-                <!--<artifactId>yuicompressor-maven-plugin</artifactId>-->
-                <!--<version>1.5.1</version>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
                 <!--<executions>-->
                     <!--<execution>-->
-                        <!--<id>compress-js</id>-->
                         <!--<goals>-->
-                            <!--&lt;!&ndash;<goal>jslint</goal>&ndash;&gt;-->
-                            <!--<goal>compress</goal>-->
+                            <!--<goal>repackage</goal>-->
                         <!--</goals>-->
                     <!--</execution>-->
                 <!--</executions>-->
-                <!--<configuration>-->
-                    <!--<failOnWarning>true</failOnWarning>-->
-                    <!--<outputDirectory>target/app/js/</outputDirectory>-->
-                    <!--<nosuffix>true</nosuffix>-->
-                    <!--<excludes>-->
-                        <!--<exclude>**/*min.css</exclude>-->
-                        <!--<exclude>**/*min.js</exclude>-->
-                    <!--</excludes>-->
-                <!--</configuration>-->
             <!--</plugin>-->
 
             <plugin>
@@ -328,7 +340,7 @@
                                         <!-- Ensure only the slf4j binding for logback is on the classpath -->
                                         <exclude>log4j:log4j</exclude>
                                         <!-- As recommended from the slf4j guide, exclude commons-logging -->
-                                        <exclude>commons-logging:commons-logging</exclude>
+                                        <!--<exclude>commons-logging:commons-logging</exclude>-->
                                         <!-- those bring webjars from a different place and lead to duplicate
                                             transitive artifacts, don't use them -->
                                         <!--<exclude>org.webjars.bower:*</exclude>-->

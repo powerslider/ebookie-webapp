@@ -6,6 +6,7 @@ require.config({
 define([/*'webjars/angularjs/1.4.8/angular.min',*/
         'webjars/jquery/2.1.4/jquery.min',
         'webjars/angularjs/1.4.8/angular-animate.min',
+        'webjars/angularjs/1.4.8/angular-sanitize.min',
         'webjars/angularjs/1.4.8/angular-cookies.min', //ngCookies
         'webjars/angularjs/1.4.8/angular-route',
         //'webjars/textAngular/1.4.1/textAngular-rangy.min',
@@ -18,15 +19,12 @@ define([/*'webjars/angularjs/1.4.8/angular.min',*/
         'js/angular/lib/angular-pageslide-directive',
         'js/angular/modules',
         'js/angular/services/user.service',
-        'js/angular/services/user.service.local-storage',
         'js/angular/services/authentication.service',
         'js/angular/services/flash.service',
         'js/angular/controllers/editor.controller',
         'js/angular/controllers/home.controller',
         'js/angular/controllers/login.controller',
-        'js/angular/controllers/register.controller',
-        //'js/angular/controllers',
-        //'js/angular/services'
+        'js/angular/controllers/register.controller'
     ],
 
     function() {
@@ -35,15 +33,22 @@ define([/*'webjars/angularjs/1.4.8/angular.min',*/
                 .module('bookApp', [
                     'ngRoute',
                     'ngCookies',
+                    'bookApp.services',
                     'bookApp.controllers',
-                    'bookApp.services'
-                ]);
+                    'toastr'
+                ])
+                .config(config)
+                .run(run);
 
-            bookApp.config(config);
+            config.$inject = ['$routeProvider', 'toastrConfig'];
+
+            function config($routeProvider, toastrConfig) {
+                angular.extend(toastrConfig, {
+                    timeOut: 5000,
+                    positionClass: 'toast-bottom-right'
+                });
+
                 //.run(run);
-
-            config.$inject = ['$routeProvider'];
-            function config($routeProvider) {
                 $routeProvider
                     .when('/', {
                         templateUrl: 'partials/home.html',

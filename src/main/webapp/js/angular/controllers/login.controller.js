@@ -5,8 +5,8 @@ define([],
             .module('bookApp.controllers')
             .controller('LoginController', LoginController);
 
-        LoginController.$inject = ['$scope', '$location', 'AuthenticationService', 'FlashService'];
-        function LoginController($scope, $location, AuthenticationService, FlashService) {
+        LoginController.$inject = ['$scope', '$rootScope', '$location', 'AuthenticationService', 'FlashService', 'toastr'];
+        function LoginController($scope, $rootScope, $location, AuthenticationService, FlashService, toastr) {
             $scope.login = login;
 
             (function initController() {
@@ -14,17 +14,20 @@ define([],
                 AuthenticationService.ClearCredentials();
             })();
 
+
             function login() {
                 $scope.dataLoading = true;
-                AuthenticationService.Login(vm.username, vm.password, function (response) {
-                    if (response.success) {
+                AuthenticationService.Login($scope.username, $scope.password)
+                    .success(function (response) {
+                        console.log(response);
                         AuthenticationService.SetCredentials($scope.username, $scope.password);
                         $location.path('/');
-                    } else {
-                        FlashService.Error(response.message);
+                    })
+                    .error(function (response) {
+                        //toastr.error("ERROR " + response.message);
+                        console.log(response);
                         $scope.dataLoading = false;
-                    }
-                });
+                    });
             }
         }
     });

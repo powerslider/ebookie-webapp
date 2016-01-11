@@ -4,3 +4,12 @@
     </div>
 </div>
 <div text-angular class="ta-editor" ng-model="htmlContent"></div>
+<button type="submit" class="btn btn-primary" ng-click="toggleSidePanel()">Save</button>
+<div pageslide ps-open="sidePanelOpened" ps-side="left" ps-custom-top="45px">
+    <div class="side-panel-content">
+        <i class="fa fa-times" id="close-button" ng-click="toggleSidePanel()"></i>
+        <h2>Table of contents</h2>
+        <div class='toc' ng-bind-html="tocHtml"></div>
+    </div>
+</div>
+
