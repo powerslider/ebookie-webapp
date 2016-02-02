@@ -5,16 +5,14 @@ define([],
             .module('bookApp.controllers')
             .controller('EditorController', EditorController);
 
-        EditorController.$inject = ['$scope', '$sce'];
-        function EditorController($scope, $sce) {
+        EditorController.$inject = ['$scope', '$sce', '$routeParams'];
+        function EditorController($scope, $sce, $routeParams) {
             $scope.htmlContent = 'Table of contents';
-
+            $scope.bookSectionName = $routeParams.tocElementName;
             $scope.sidePanelOpened = false; // This will be binded using the ps-open attribute
             $scope.toggleSidePanel = function () {
                 $scope.sidePanelOpened = !$scope.sidePanelOpened;
-                //$scope.tocHtml = $sce.trustAsHtml($scope.htmlContent);
-                //var t = $('div.toc > ul, ol, li').text();
-                //$('div.toc > ul, ol, li').text('<a href="#">aeuueaou</a>');
+
                 console.log($scope.htmlContent);
                 $scope.tocHtml = $sce.trustAsHtml($scope.htmlContent);
             };

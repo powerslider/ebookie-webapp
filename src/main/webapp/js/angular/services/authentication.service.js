@@ -31,7 +31,6 @@ define([],
                         authdata: authdata
                     }
                 };
-
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
                 $cookieStore.put('globals', $rootScope.globals);
             }

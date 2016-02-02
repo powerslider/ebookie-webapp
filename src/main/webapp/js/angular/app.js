@@ -9,11 +9,6 @@ define([/*'webjars/angularjs/1.4.8/angular.min',*/
         'webjars/angularjs/1.4.8/angular-sanitize.min',
         'webjars/angularjs/1.4.8/angular-cookies.min', //ngCookies
         'webjars/angularjs/1.4.8/angular-route',
-        //'webjars/textAngular/1.4.1/textAngular-rangy.min',
-        //'webjars/textAngular/1.4.1/textAngular-sanitize.min',
-        //'webjars/textAngular/1.4.1/textAngular.min',
-        //'webjars/rangy/1.3.0/rangy-selectionsaverestore.min',
-        //'webjars/rangy/1.3.0/rangy-core.min',
         'webjars/angular-toastr/1.5.0/angular-toastr.min',
         'webjars/bootstrap/4.0.0-alpha/js/bootstrap.min',
         'js/angular/lib/angular-pageslide-directive',
@@ -21,6 +16,7 @@ define([/*'webjars/angularjs/1.4.8/angular.min',*/
         'js/angular/services/user.service',
         'js/angular/services/authentication.service',
         'js/angular/services/flash.service',
+        'js/angular/controllers/toc-editor.controller',
         'js/angular/controllers/editor.controller',
         'js/angular/controllers/home.controller',
         'js/angular/controllers/login.controller',
@@ -48,7 +44,6 @@ define([/*'webjars/angularjs/1.4.8/angular.min',*/
                     positionClass: 'toast-bottom-right'
                 });
 
-                //.run(run);
                 $routeProvider
                     .when('/', {
                         templateUrl: 'partials/home.html',
@@ -62,8 +57,12 @@ define([/*'webjars/angularjs/1.4.8/angular.min',*/
                         templateUrl: 'partials/register.html',
                         controller: 'RegisterController'
                     })
-                    .when('/editor', {
-                        templateUrl: 'partials/editor.html',
+                    .when('/toc-editor', {
+                        templateUrl: 'partials/toc-editor.html',
+                        controller: 'TocEditorController'
+                    })
+                    .when('/editor/:tocElementName', {
+                        template: 'partials/editor.html',
                         controller: 'EditorController'
                     })
                     .otherwise({redirectTo: '/login'});
