@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="pull-left titleLine">
+        <h3 style="margin-top: 4px; margin-bottom: 4px;">Create new book</h3>
+    </div>
+</div>
+<form name="form" ng-submit="register()" role="form">
+    <div class="form-group animate-show" ng-class="{ 'has-error': form.title.$dirty && form.title.$error.required }" ng-hide="isBookCreated">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" class="form-control" ng-model="ebook.title" required />
+        <span ng-show="form.title.$dirty && form.title.$error.required" class="help-block">Title is required</span>
+    </div>
+    <div class="form-group animate-show" ng-hide="isBookCreated">
+        <label for="subtitle">Subtitle</label>
+        <input type="text" name="lastName" id="subtitle" class="form-control" ng-model="ebook.subtitle" />
+    </div>
+    <div text-angular class="ta-editor" ng-model="htmlContent"></div>
+    <div class="form-group animate-show" ng-hide="isBookCreated">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" rows="4" cols="50" ng-model="ebook.description"></textarea>
+    </div>
+    <div class="form-actions animate-show" ng-hide="isBookCreated">
+        <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary" ng-click="saveNewBook()">Save</button>
+        <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        <a href="#/" class="btn btn-link">Cancel</a>
+    </div>
+    <button type="submit" class="btn btn-primary" ng-click="addLinks()" ng-show="isBookCreated">Update</button>
+    <div pageslide ps-open="isBookCreated" ps-side="left" ps-custom-top="45px">
+        <div class="side-panel-content">
+            <i class="fa fa-times" id="close-button" ng-click="toggleSidePanel()"></i>
+            <h3>Title</h3>
+            <p>{{ebook.title}}</p>
+            <h3>Subtitle</h3>
+            <p>{{ebook.subtitle}}</p>
+            <h3>Description</h3>
+            <p>{{ebook.description}}</p>
+        </div>
+    </div>
+</form>

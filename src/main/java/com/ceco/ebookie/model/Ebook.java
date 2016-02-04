@@ -60,7 +60,7 @@ public class Ebook {
         this.title = title;
     }
 
-    @Column(name = "subtitle", nullable = false, length = 200)
+    @Column(name = "subtitle", length = 200)
     public String getSubtitle() {
         return subtitle;
     }
@@ -98,7 +98,7 @@ public class Ebook {
         this.author = author;
     }
 
-    @OneToMany(mappedBy = "ebook", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "ebook", cascade = CascadeType.ALL)
     public Set<Chapter> getChapters() {
         return chapters;
     }

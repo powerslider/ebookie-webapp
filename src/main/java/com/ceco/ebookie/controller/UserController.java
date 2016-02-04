@@ -23,12 +23,12 @@ public class UserController {
             value = "/authenticate",
             method = { RequestMethod.POST }
     )
-    public ResponseEntity<?> authenticateUser(@RequestParam(value = "username", required = true) String username,
+    public ResponseEntity<Integer> authenticateUser(@RequestParam(value = "username", required = true) String username,
                                               @RequestParam(value = "password", required = true) String password) {
-        Boolean isUserAuthenticated = userService
+        Integer userId = userService
                 .isUserAuthenticated(username, password);
-        if (isUserAuthenticated) {
-            return new ResponseEntity<>(HttpStatus.OK);
+        if (userId != Integer.MAX_VALUE) {
+            return new ResponseEntity<>(userId, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }

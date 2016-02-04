@@ -50,3 +50,16 @@ textarea.ta-bind {
     -moz-box-shadow:    -1px 3px 10px 0px rgba(49, 109, 208, 0.69);
     box-shadow:         -1px 3px 10px 0px rgba(49, 109, 208, 0.69);
 }
+
+.animate-show {
+    background:transparent;
+    position: relative;
+    z-index: 1;
+    top: 25%;
+    -webkit-transition:all linear 2s;
+    transition:all linear 2s;
+}
+
+.animate-show.ng-hide {
+    opacity: 0;
+}

@@ -5,8 +5,8 @@ define([],
             .module('bookApp.controllers')
             .controller('LoginController', LoginController);
 
-        LoginController.$inject = ['$scope', '$rootScope', '$location', 'AuthenticationService', 'FlashService', 'toastr'];
-        function LoginController($scope, $rootScope, $location, AuthenticationService, FlashService, toastr) {
+        LoginController.$inject = ['$scope', '$rootScope', '$location', 'AuthenticationService', 'toastr'];
+        function LoginController($scope, $rootScope, $location, AuthenticationService, toastr) {
             $scope.login = login;
 
             (function initController() {

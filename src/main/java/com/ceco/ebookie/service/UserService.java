@@ -28,8 +28,8 @@ public class UserService {
         }.execute();
     }
 
-    public Boolean isUserAuthenticated(String username, String password) {
-        return new Transactional<Boolean>() {
+    public Integer isUserAuthenticated(String username, String password) {
+        return new Transactional<Integer>() {
             @Override
             protected void doInTransaction(Session session) throws Exception {
                 User user = (User) session.createCriteria(User.class)
@@ -37,7 +37,11 @@ public class UserService {
                         .add(Restrictions.eq("password", password))
                         .uniqueResult();
 
-                setReturnValue(user != null);
+                if (user != null) {
+                    setReturnValue(user.getId());
+                } else {
+                    setReturnValue(Integer.MAX_VALUE);
+                }
             }
         }.execute();
     }

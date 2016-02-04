@@ -12,18 +12,14 @@ define([],
                 $scope.sidePanelOpened = !$scope.sidePanelOpened;
             };
 
-            loadCurrentUser();
-
-            function loadCurrentUser() {
-                var loggedUserUsername = $rootScope.globals.currentUser.username;
-                UserService.GetByUsername(loggedUserUsername)
-                    .then(function (response) {
-                        console.log(response);
-                        $scope.user = response;
-                    }, function (response) {
-                        console.log("ERROR " + response);
-                    });
-            }
+            var loggedUserUsername = $rootScope.globals.currentUser.username;
+            UserService.GetByUsername(loggedUserUsername)
+                .then(function (response) {
+                    console.log(response);
+                    $scope.user = response;
+                }, function (response) {
+                    console.log("ERROR " + response);
+                });
         }
     });
 

@@ -15,8 +15,9 @@ define([/*'webjars/angularjs/1.4.8/angular.min',*/
         'js/angular/modules',
         'js/angular/services/user.service',
         'js/angular/services/authentication.service',
+        'js/angular/services/ebook.service',
         'js/angular/services/flash.service',
-        'js/angular/controllers/toc-editor.controller',
+        'js/angular/controllers/new-book.controller',
         'js/angular/controllers/editor.controller',
         'js/angular/controllers/home.controller',
         'js/angular/controllers/login.controller',
@@ -36,9 +37,10 @@ define([/*'webjars/angularjs/1.4.8/angular.min',*/
                 .config(config)
                 .run(run);
 
-            config.$inject = ['$routeProvider', 'toastrConfig'];
+            config.$inject = ['$routeProvider', '$locationProvider', 'toastrConfig'];
 
-            function config($routeProvider, toastrConfig) {
+            function config($routeProvider, $locationProvider, toastrConfig) {
+                //$locationProvider.html5Mode(true);
                 angular.extend(toastrConfig, {
                     timeOut: 5000,
                     positionClass: 'toast-bottom-right'
@@ -57,9 +59,10 @@ define([/*'webjars/angularjs/1.4.8/angular.min',*/
                         templateUrl: 'partials/register.html',
                         controller: 'RegisterController'
                     })
-                    .when('/toc-editor', {
-                        templateUrl: 'partials/toc-editor.html',
-                        controller: 'TocEditorController'
+                    .when('/new-book', {
+                        templateUrl: 'partials/new-book.html',
+                        reloadOnSearch: true,
+                        controller: 'NewBookController'
                     })
                     .when('/editor/:tocElementName', {
                         template: 'partials/editor.html',
